@@ -4,7 +4,6 @@ import {
   Zap,
   Handshake,
   Laptop,
-  MessageCircle,
   ArrowRight,
   FileDown,
   Usb,
@@ -12,6 +11,7 @@ import {
 
 import heroImage from "@/assets/hero-certificado.jpg";
 import { SiteHeader } from "@/components/landing/site-header";
+import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
 import { Faq } from "@/components/landing/faq";
 import { WA_GENERIC, WA_HELP, WHATSAPP_DISPLAY, wa } from "@/lib/whatsapp";
@@ -113,7 +113,7 @@ function Index() {
                 rel="noopener noreferrer"
                 className="btn-base btn-whats"
               >
-                <MessageCircle className="h-5 w-5" />
+                <WhatsappIcon className="h-5 w-5" />
                 QUERO MEU CERTIFICADO
               </a>
               <a
@@ -204,7 +204,7 @@ function Index() {
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
           >
-            <MessageCircle className="h-5 w-5" />
+            <WhatsappIcon className="h-5 w-5" />
             ME AJUDE A ESCOLHER
           </a>
         </div>
@@ -334,7 +334,7 @@ function Index() {
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
           >
-            <MessageCircle className="h-5 w-5" />
+            <WhatsappIcon className="h-5 w-5" />
             FALAR COM UM ESPECIALISTA NO WHATSAPP
           </a>
         </div>
@@ -378,8 +378,9 @@ function Index() {
               href={WA_GENERIC}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground hover:text-primary"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
             >
+              <WhatsappIcon className="h-5 w-5 text-whats" />
               WhatsApp {WHATSAPP_DISPLAY}
             </a>
           </div>
@@ -397,7 +398,7 @@ function Index() {
           rel="noopener noreferrer"
           className="btn-base btn-whats w-full"
         >
-          <MessageCircle className="h-5 w-5" />
+          <WhatsappIcon className="h-5 w-5" />
           Falar no WhatsApp
         </a>
       </div>

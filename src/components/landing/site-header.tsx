@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { WA_GENERIC } from "@/lib/whatsapp";
 
 const links = [
@@ -43,7 +44,7 @@ export function SiteHeader() {
             rel="noopener noreferrer"
             className="btn-base btn-whats hidden !px-4 !py-2.5 text-sm sm:inline-flex"
           >
-            <MessageCircle className="h-4 w-4" />
+            <WhatsappIcon className="h-4 w-4" />
             Falar no WhatsApp
           </a>
           <a
@@ -53,7 +54,7 @@ export function SiteHeader() {
             aria-label="Falar no WhatsApp"
             className="btn-base btn-whats !p-2.5 sm:hidden"
           >
-            <MessageCircle className="h-5 w-5" />
+            <WhatsappIcon className="h-5 w-5" />
           </a>
           <button
             type="button"
