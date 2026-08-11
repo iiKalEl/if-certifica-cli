@@ -348,9 +348,9 @@ function Index() {
             <img
               src={logoAsset.url}
               alt="IF Certifica"
-              width={200}
-              height={48}
-              className="h-10 w-auto"
+              width={280}
+              height={68}
+              className="h-14 w-auto"
             />
             <p className="mt-4 text-sm text-muted-foreground">AR TechSign | AC Consulti</p>
           </div>
