@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-certificado.jpg";
+import logoAsset from "@/assets/logo-if-certifica.png.asset.json";
 import { SiteHeader } from "@/components/landing/site-header";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
@@ -344,12 +345,13 @@ function Index() {
       <footer className="border-t border-border bg-background py-12 pb-28 md:pb-12">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy text-sm font-extrabold text-white">
-                IF
-              </span>
-              <span className="text-base font-extrabold text-navy">IF Certifica</span>
-            </div>
+            <img
+              src={logoAsset.url}
+              alt="IF Certifica"
+              width={200}
+              height={48}
+              className="h-10 w-auto"
+            />
             <p className="mt-4 text-sm text-muted-foreground">AR TechSign | AC Consulti</p>
           </div>
 
