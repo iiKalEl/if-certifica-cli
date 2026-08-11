@@ -12,6 +12,7 @@ import {
 
 import heroImage from "@/assets/hero-certificado.jpg";
 import { SiteHeader } from "@/components/landing/site-header";
+import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
 import { Faq } from "@/components/landing/faq";
 import { WA_GENERIC, WA_HELP, WHATSAPP_DISPLAY, wa } from "@/lib/whatsapp";
@@ -378,8 +379,9 @@ function Index() {
               href={WA_GENERIC}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground hover:text-primary"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
             >
+              <WhatsappIcon className="h-5 w-5 text-whats" />
               WhatsApp {WHATSAPP_DISPLAY}
             </a>
           </div>
