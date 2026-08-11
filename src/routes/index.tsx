@@ -4,7 +4,6 @@ import {
   Zap,
   Handshake,
   Laptop,
-  MessageCircle,
   ArrowRight,
   FileDown,
   Usb,
@@ -114,7 +113,7 @@ function Index() {
                 rel="noopener noreferrer"
                 className="btn-base btn-whats"
               >
-                <MessageCircle className="h-5 w-5" />
+                <WhatsappIcon className="h-5 w-5" />
                 QUERO MEU CERTIFICADO
               </a>
               <a
@@ -205,7 +204,7 @@ function Index() {
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
           >
-            <MessageCircle className="h-5 w-5" />
+            <WhatsappIcon className="h-5 w-5" />
             ME AJUDE A ESCOLHER
           </a>
         </div>
@@ -335,7 +334,7 @@ function Index() {
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
           >
-            <MessageCircle className="h-5 w-5" />
+            <WhatsappIcon className="h-5 w-5" />
             FALAR COM UM ESPECIALISTA NO WHATSAPP
           </a>
         </div>
@@ -399,7 +398,7 @@ function Index() {
           rel="noopener noreferrer"
           className="btn-base btn-whats w-full"
         >
-          <MessageCircle className="h-5 w-5" />
+          <WhatsappIcon className="h-5 w-5" />
           Falar no WhatsApp
         </a>
       </div>
