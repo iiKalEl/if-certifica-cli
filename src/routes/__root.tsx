@@ -77,16 +77,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "IF Certifica | Certificado Digital A1 e A3" },
+      {
+        name: "description",
+        content:
+          "Certificado digital A1 e A3 para Pessoa Física e Jurídica. Atendimento especializado, segurança e praticidade. Fale com a IF Certifica.",
+      },
+      { name: "author", content: "IF Certifica" },
+      { property: "og:title", content: "IF Certifica | Certificado Digital A1 e A3" },
+      {
+        property: "og:description",
+        content:
+          "Certificado digital A1 e A3 para Pessoa Física e Jurídica. Atendimento especializado, segurança e praticidade.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "IF Certifica" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
