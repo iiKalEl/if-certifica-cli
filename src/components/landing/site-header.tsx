@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { WA_GENERIC } from "@/lib/whatsapp";
+import logoAsset from "@/assets/logo-if-certifica.png.asset.json";
 
 const links = [
   { label: "Início", href: "#inicio" },
@@ -17,12 +18,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="#inicio" className="flex min-w-0 items-center gap-2">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-navy text-sm font-extrabold text-white">
-            IF
-          </span>
-          <span className="truncate text-base font-extrabold tracking-tight text-navy">
-            IF Certifica
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="IF Certifica"
+            width={200}
+            height={48}
+            className="h-10 w-auto shrink-0"
+          />
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
