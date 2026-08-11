@@ -21,9 +21,9 @@ export function SiteHeader() {
           <img
             src={logoAsset.url}
             alt="IF Certifica"
-            width={200}
-            height={48}
-            className="h-10 w-auto shrink-0"
+            width={240}
+            height={58}
+            className="h-12 w-auto shrink-0"
           />
         </a>
 
