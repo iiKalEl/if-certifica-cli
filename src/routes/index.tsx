@@ -352,7 +352,6 @@ function Index() {
               height={158}
               className="h-36 w-auto"
             />
-            <p className="mt-4 text-sm text-muted-foreground">AR TechSign | AC Consulti</p>
           </div>
 
           <nav className="space-y-2 text-sm">
