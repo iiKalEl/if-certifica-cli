@@ -109,7 +109,7 @@ function Index() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://wa.me/5561996295122"
+              href={WA_GENERIC}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-base btn-whats"
@@ -395,7 +395,7 @@ function Index() {
       {/* WhatsApp fixo mobile */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 p-3 backdrop-blur md:hidden">
         <a
-          href={wa("Olá! Gostaria de falar sobre certificado digital.")}
+          href={WA_GENERIC}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-base btn-whats w-full"
