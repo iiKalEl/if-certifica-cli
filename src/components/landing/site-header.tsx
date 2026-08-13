@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { WA_GENERIC } from "@/lib/whatsapp";
-import logoAsset from "@/assets/logo-if-certifica.png.asset.json";
+import logoAsset from "@/assets/logo-if-certifica-v2.png.asset.json";
 
 const links = [
   { label: "Início", href: "#inicio" },
