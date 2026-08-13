@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-certificado.jpg";
-import logoAsset from "@/assets/logo-if-certifica.png.asset.json";
+import logoAsset from "@/assets/logo-if-certifica-v2.png.asset.json";
 import { SiteHeader } from "@/components/landing/site-header";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
