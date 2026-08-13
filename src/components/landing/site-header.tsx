@@ -16,14 +16,14 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-36 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-40 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="#inicio" className="flex min-w-0 items-center gap-2">
           <img
             src={logoAsset.url}
             alt="IF Certifica"
             width={560}
             height={138}
-            className="h-32 w-auto shrink-0"
+            className="h-40 w-auto shrink-0"
           />
         </a>
 

@@ -350,7 +350,7 @@ function Index() {
               alt="IF Certifica"
               width={640}
               height={158}
-              className="h-36 w-auto"
+              className="h-44 w-auto"
             />
           </div>
 
