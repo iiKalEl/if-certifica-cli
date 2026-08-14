@@ -7,6 +7,14 @@ import {
   ArrowRight,
   FileDown,
   Usb,
+  Check,
+  Video,
+  Users,
+  User,
+  Building2,
+  Scale,
+  Calculator,
+  Monitor,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-certificado.jpg";
@@ -25,13 +33,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Certificado digital A1 e A3 para Pessoa Física e Jurídica. Atendimento especializado, segurança e praticidade. Fale com a IF Certifica.",
+          "Certificado digital A1 e A3 para Pessoa Física e Jurídica. Atendimento especializado, emissão por videoconferência e praticidade. Fale com a IF Certifica.",
       },
       { property: "og:title", content: "IF Certifica | Certificado Digital A1 e A3" },
       {
         property: "og:description",
         content:
-          "Certificado digital A1 e A3 para PF e PJ, com atendimento especializado pelo WhatsApp.",
+          "Certificado digital A1 e A3 para PF e PJ, com atendimento especializado pelo WhatsApp e emissão por videoconferência.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -86,6 +94,43 @@ const steps = [
   { n: "04", t: "Emissão", d: "Conclua o processo e tenha seu certificado digital." },
 ];
 
+const quickHighlights = [
+  { icon: FileDown, text: "Opções A1 e A3" },
+  { icon: Users, text: "Pessoa Física e Jurídica" },
+  { icon: Video, text: "Emissão por videoconferência" },
+  { icon: Handshake, text: "Ajuda na escolha" },
+  { icon: WhatsappIcon, text: "Atendimento pelo WhatsApp" },
+  { icon: ShieldCheck, text: "Processo seguro" },
+];
+
+const scenarios = [
+  {
+    icon: User,
+    title: "Profissional autônomo ou pessoa física",
+    text: "Se você usa o certificado com frequência em sistemas digitais, o A1 pode ser mais prático. Se prefere armazenamento físico e não usa todo dia, o A3 também pode ser uma boa opção.",
+  },
+  {
+    icon: Scale,
+    title: "Advogado",
+    text: "Para assinaturas digitais e acesso a sistemas jurídicos, o A1 tende a ser mais ágil no dia a dia. A escolha final depende de como você utiliza o certificado e das exigências dos sistemas que usa.",
+  },
+  {
+    icon: Building2,
+    title: "Empresa (PJ)",
+    text: "Empresas que usam certificado em sistemas contábeis, emissão de notas fiscais e outras plataformas geralmente encontram no A1 mais praticidade e agilidade.",
+  },
+  {
+    icon: Calculator,
+    title: "Contador ou contabilidade",
+    text: "O A1 costuma ser mais conveniente quando o certificado precisa ser utilizado frequentemente em diferentes sistemas e processos digitais.",
+  },
+  {
+    icon: Monitor,
+    title: "Diferentes computadores ou sistemas",
+    text: "O A1 pode ser mais prático para quem precisa acessar o certificado em vários sistemas. O A3 exige o dispositivo físico, o que pode ser uma vantagem em segurança, mas menos prático em alguns casos.",
+  },
+];
+
 function Index() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
@@ -96,9 +141,14 @@ function Index() {
         <div className="pointer-events-none absolute inset-0 opacity-60 [background:radial-gradient(60%_60%_at_80%_10%,color-mix(in_oklab,var(--brand)_35%,transparent),transparent)]" />
         <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-white/80">
-              CERTIFICADO DIGITAL
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-white/80">
+                CERTIFICADO DIGITAL
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-whats/15 px-3 py-1.5 text-xs font-bold tracking-[0.12em] text-whats">
+                <Video className="h-3.5 w-3.5" /> EMISSÃO POR VIDEOCONFERÊNCIA
+              </span>
+            </div>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               Seu certificado digital sem complicação.
             </h1>
@@ -109,7 +159,7 @@ function Index() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-              href={WA_GENERIC}
+                href={WA_GENERIC}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-base btn-whats"
@@ -128,17 +178,17 @@ function Index() {
               </a>
             </div>
 
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/75">
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-whats" /> Seguro
-              </li>
-              <li className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-whats" /> Ágil
-              </li>
-              <li className="flex items-center gap-2">
-                <Handshake className="h-4 w-4 text-whats" /> Atendimento especializado
-              </li>
-            </ul>
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {quickHighlights.map((item) => (
+                <div
+                  key={item.text}
+                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white/85"
+                >
+                  <item.icon className="h-4 w-4 shrink-0 text-whats" />
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="relative">
@@ -189,30 +239,8 @@ function Index() {
         </div>
       </section>
 
-      {/* EM DÚVIDA */}
-      <section className="section-pad bg-background">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
-            Não sabe qual certificado escolher?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            A1, A3, PF, PJ... Pode parecer complicado. Nossa equipe pode orientar você e indicar a
-            opção mais adequada para sua necessidade.
-          </p>
-          <a
-            href={WA_HELP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-base btn-whats mt-8"
-          >
-            <WhatsappIcon className="h-5 w-5" />
-            ME AJUDE A ESCOLHER
-          </a>
-        </div>
-      </section>
-
       {/* BENEFÍCIOS */}
-      <section className="section-pad bg-surface">
+      <section className="section-pad bg-background">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
             Por que escolher a IF Certifica?
@@ -232,7 +260,7 @@ function Index() {
       </section>
 
       {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="section-pad bg-background">
+      <section id="como-funciona" className="section-pad bg-surface">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
             Como funciona
@@ -253,68 +281,172 @@ function Index() {
         </div>
       </section>
 
-      {/* A1 x A3 */}
-      <section className="section-pad bg-surface">
+      {/* DESTAQUE VIDEOCONFERÊNCIA */}
+      <section className="section-pad bg-navy text-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-12 text-center sm:px-12 sm:py-16">
+            <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklab,var(--brand)_35%,transparent),transparent)]" />
+            <div className="relative mx-auto max-w-2xl">
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-whats/15 text-whats">
+                <Video className="h-7 w-7" />
+              </span>
+              <h2 className="mt-6 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Emita seu certificado digital sem sair de casa.
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-white/75">
+                A emissão pode ser realizada por videoconferência, de forma prática e segura, sem a
+                necessidade de deslocamento.
+              </p>
+              <a
+                href={WA_GENERIC}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-base btn-whats mt-8"
+              >
+                <WhatsappIcon className="h-5 w-5" />
+                Agendar minha emissão
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* A1 x A3 DETALHADO */}
+      <section id="diferenca" className="section-pad bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
-            A1 ou A3: qual escolher?
+            Qual a diferença entre os certificados?
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-muted-foreground">
+            Entenda de forma simples como funcionam os certificados A1 e A3 e descubra qual se
+            encaixa melhor na sua rotina.
+          </p>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {[
-              {
-                icon: FileDown,
-                title: "A1",
-                items: [
-                  "Arquivo digital",
-                  "Armazenado digitalmente",
-                  "Prático para uso em computador",
-                  "Validade de 1 ano",
-                  "Ideal para quem busca praticidade",
-                ],
-              },
-              {
-                icon: Usb,
-                title: "A3",
-                items: [
-                  "Token ou cartão",
-                  "Dispositivo físico incluso",
-                  "Mais opções de validade",
-                  "Disponível por 1 ou 2 anos",
-                  "Ideal para quem prefere utilizar dispositivo físico",
-                ],
-              },
-            ].map((c) => (
-              <article key={c.title} className="card-soft p-6 sm:p-8">
-                <div className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary">
-                    <c.icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="text-2xl font-extrabold text-navy">{c.title}</h3>
-                </div>
-                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                  {c.items.map((i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                      <span>{i}</span>
+            <article className="card-soft flex flex-col p-6 sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-primary">
+                  <FileDown className="h-5 w-5" />
+                </span>
+                <h3 className="text-2xl font-extrabold text-navy">Certificado A1</h3>
+              </div>
+              <div className="mt-6 flex-1 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  O <strong className="text-navy">Certificado Digital A1</strong> é armazenado como
+                  um arquivo no computador, celular ou outro dispositivo compatível.
+                </p>
+                <p>
+                  Ele costuma ter <strong className="text-navy">validade de 1 ano</strong> e é muito
+                  prático para quem utiliza o certificado com frequência em sistemas, emissão de
+                  notas fiscais, plataformas contábeis e outros serviços digitais.
+                </p>
+                <p>
+                  Por ser um arquivo digital, é importante fazer o{" "}
+                  <strong className="text-navy">armazenamento e backup de forma segura</strong>,
+                  garantindo que você não perca o acesso aos seus documentos e sistemas.
+                </p>
+              </div>
+              <div className="mt-6 rounded-xl bg-accent/50 p-4">
+                <p className="text-sm font-bold text-navy">Ideal para:</p>
+                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                  {[
+                    "Quem usa o certificado diariamente em sistemas",
+                    "Empresas e contadores que acessam várias plataformas",
+                    "Quem busca praticidade no dia a dia",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
+              </div>
+            </article>
+
+            <article className="card-soft flex flex-col p-6 sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-primary">
+                  <Usb className="h-5 w-5" />
+                </span>
+                <h3 className="text-2xl font-extrabold text-navy">Certificado A3</h3>
+              </div>
+              <div className="mt-6 flex-1 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  O <strong className="text-navy">Certificado Digital A3</strong> é armazenado em um{" "}
+                  <strong className="text-navy">dispositivo físico</strong>, como um token USB ou
+                  cartão com chip.
+                </p>
+                <p>
+                  Ele pode ter validade de <strong className="text-navy">1 ou 2 anos</strong>,
+                  conforme a modalidade contratada. Para utilizá-lo, é necessário ter o dispositivo
+                  em mãos.
+                </p>
+                <p>
+                  Por depender de um dispositivo físico, ele pode oferecer mais segurança em alguns
+                  cenários, mas exige cuidado para não perder ou danificar o token ou cartão.
+                </p>
+              </div>
+              <div className="mt-6 rounded-xl bg-accent/50 p-4">
+                <p className="text-sm font-bold text-navy">Ideal para:</p>
+                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                  {[
+                    "Quem prefere armazenamento físico",
+                    "Profissionais que não usam o certificado todos os dias",
+                    "Quem quer opções de 1 ou 2 anos de validade",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* QUAL ESCOLHER - CENÁRIOS */}
+      <section className="section-pad bg-surface">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <h2 className="text-center text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
+            Qual certificado escolher?
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-muted-foreground">
+            Veja alguns cenários práticos para entender qual opção pode fazer mais sentido para você.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {scenarios.map((s) => (
+              <article key={s.title} className="card-soft p-6">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary">
+                  <s.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-base font-extrabold text-navy">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
               </article>
             ))}
           </div>
-          <div className="mt-8 flex flex-col items-center gap-4 text-center">
-            <p className="text-sm text-muted-foreground">
-              Ainda está em dúvida? Fale com nossa equipe.
-            </p>
-            <a
-              href={WA_HELP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-base btn-outline-brand"
-            >
-              FALAR COM ESPECIALISTA
-            </a>
-          </div>
+        </div>
+      </section>
+
+      {/* CTA PÓS-EXPLICAÇÕES */}
+      <section className="section-pad bg-background">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
+            Ainda está em dúvida sobre qual certificado escolher?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Entre em contato conosco e agende a emissão do seu certificado. Nossa equipe poderá
+            orientar você sobre a opção mais adequada para sua necessidade.
+          </p>
+          <a
+            href={WA_GENERIC}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-base btn-whats mt-8"
+          >
+            <WhatsappIcon className="h-5 w-5" />
+            Falar com a IF Certifica
+          </a>
         </div>
       </section>
 
@@ -364,6 +496,9 @@ function Index() {
             </a>
             <a href="#duvidas" className="block text-muted-foreground hover:text-primary">
               FAQ
+            </a>
+            <a href="#diferenca" className="block text-muted-foreground hover:text-primary">
+              Diferença A1 x A3
             </a>
             <a href="#" className="block text-muted-foreground hover:text-primary">
               Política de Privacidade
