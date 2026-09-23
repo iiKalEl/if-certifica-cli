@@ -18,12 +18,12 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-certificado.jpg";
-import logoAsset from "@/assets/logo-if-certifica-v2.png.asset.json";
 import { SiteHeader } from "@/components/landing/site-header";
+import { SiteFooter } from "@/components/landing/site-footer";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
 import { Faq } from "@/components/landing/faq";
-import { WA_GENERIC, WA_HELP, WHATSAPP_DISPLAY, wa } from "@/lib/whatsapp";
+import { WA_GENERIC, WA_HELP, wa } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -155,6 +155,11 @@ function Index() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               A1 e A3 para Pessoa Física e Jurídica, com atendimento especializado do início ao
               fim.
+            </p>
+
+            <p className="mt-4 flex max-w-xl items-start gap-2 border-l-4 border-whats bg-white/5 px-4 py-3 text-sm font-bold leading-relaxed text-white sm:text-base">
+              <Video className="mt-0.5 h-5 w-5 shrink-0 text-whats" />
+              Atendimento presencial em Brasília-DF ou por videoconferência para todo o Brasil.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -294,8 +299,8 @@ function Index() {
                 Emita seu certificado digital sem sair de casa.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-white/75">
-                A emissão pode ser realizada por videoconferência, de forma prática e segura, sem a
-                necessidade de deslocamento.
+                A emissão pode ser feita por videoconferência, de qualquer lugar do Brasil, ou
+                presencialmente em Brasília-DF.
               </p>
               <a
                 href={WA_GENERIC}
@@ -473,58 +478,7 @@ function Index() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-border bg-background py-12 pb-28 md:pb-12">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 md:grid-cols-3">
-          <div>
-            <img
-              src={logoAsset.url}
-              alt="IF Certifica"
-              width={640}
-              height={158}
-              className="h-44 w-auto"
-            />
-          </div>
-
-          <nav className="space-y-2 text-sm">
-            <p className="font-bold text-navy">Navegação</p>
-            <a href="#certificados" className="block text-muted-foreground hover:text-primary">
-              Certificados
-            </a>
-            <a href="#como-funciona" className="block text-muted-foreground hover:text-primary">
-              Como funciona
-            </a>
-            <a href="#duvidas" className="block text-muted-foreground hover:text-primary">
-              FAQ
-            </a>
-            <a href="#diferenca" className="block text-muted-foreground hover:text-primary">
-              Diferença A1 x A3
-            </a>
-            <a href="#" className="block text-muted-foreground hover:text-primary">
-              Política de Privacidade
-            </a>
-            <a href="#" className="block text-muted-foreground hover:text-primary">
-              Termos de Uso
-            </a>
-          </nav>
-
-          <div className="space-y-2 text-sm">
-            <p className="font-bold text-navy">Contato</p>
-            <a
-              href={WA_GENERIC}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
-            >
-              <WhatsappIcon className="h-5 w-5 text-whats" />
-              WhatsApp {WHATSAPP_DISPLAY}
-            </a>
-          </div>
-        </div>
-        <p className="mx-auto mt-10 max-w-6xl px-4 text-xs text-muted-foreground sm:px-6">
-          © {new Date().getFullYear()} IF Certifica. Todos os direitos reservados.
-        </p>
-      </footer>
+      <SiteFooter />
 
       {/* WhatsApp fixo mobile */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 p-3 backdrop-blur md:hidden">
