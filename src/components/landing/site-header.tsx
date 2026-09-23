@@ -5,10 +5,10 @@ import { WA_GENERIC } from "@/lib/whatsapp";
 import logoAsset from "@/assets/logo-if-certifica-v2.png.asset.json";
 
 const links = [
-  { label: "Início", href: "#inicio" },
-  { label: "Certificados", href: "#certificados" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Dúvidas", href: "#duvidas" },
+  { label: "Início", href: "/#inicio" },
+  { label: "Certificados", href: "/#certificados" },
+  { label: "Como funciona", href: "/#como-funciona" },
+  { label: "Dúvidas", href: "/#duvidas" },
 ];
 
 export function SiteHeader() {
@@ -17,7 +17,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-40 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <a href="#inicio" className="flex min-w-0 items-center gap-2">
+        <a href="/#inicio" className="flex min-w-0 items-center gap-2">
           <img
             src={logoAsset.url}
             alt="IF Certifica"
