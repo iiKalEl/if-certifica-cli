@@ -27,9 +27,10 @@ import { WA_GENERIC, WA_HELP, WA_VIDEO } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  validateSearch: (search): { tipo?: "pf" | "pj" } => ({
-    tipo: search.tipo === "pj" ? "pj" : search.tipo === "pf" ? "pf" : undefined,
-  }),
+  validateSearch: (search): { tipo?: "pf" | "pj" } => {
+    const tipo = search["tipo"];
+    return tipo === "pj" || tipo === "pf" ? { tipo } : {};
+  },
   head: () => ({
     meta: [
       { title: "IF Certifica | Certificado Digital A1 e A3" },
