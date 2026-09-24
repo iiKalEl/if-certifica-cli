@@ -25,7 +25,7 @@ export function SiteFooter() {
               Responsável: Igor Fernandes ·{" "}
               <a
                 href="mailto:igorffernandes.certificados@gmail.com"
-                className="break-all hover:text-primary"
+                className="inline-block max-w-full whitespace-nowrap text-[13px] hover:text-primary sm:text-sm"
               >
                 igorffernandes.certificados@gmail.com
               </a>
@@ -68,7 +68,7 @@ export function SiteFooter() {
           </a>
           <a
             href="mailto:igorffernandes.certificados@gmail.com"
-            className="block break-all text-muted-foreground hover:text-primary"
+            className="block max-w-full whitespace-nowrap text-[13px] text-muted-foreground hover:text-primary sm:text-sm"
           >
             igorffernandes.certificados@gmail.com
           </a>

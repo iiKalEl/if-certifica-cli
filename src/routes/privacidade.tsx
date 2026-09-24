@@ -4,7 +4,7 @@ import { Database, Eye, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
-import { WA_GENERIC, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
+import { WA_HELP, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/privacidade")({
   component: PrivacyPage,
@@ -111,7 +111,7 @@ function PrivacyPage() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                 Você pode solicitar acesso, correção ou exclusão dos seus dados pessoais pelo e-mail ou WhatsApp informados nesta página.
               </p>
-              <a href={WA_GENERIC} target="_blank" rel="noopener noreferrer" className="btn-base btn-whats mt-6">
+              <a href={WA_HELP} target="_blank" rel="noopener noreferrer" className="btn-base btn-whats mt-6">
                 <WhatsappIcon className="h-5 w-5" />
                 Falar com a IF Certifica
               </a>

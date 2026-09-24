@@ -23,10 +23,13 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { WhatsappIcon } from "@/components/landing/whatsapp-icon";
 import { Products } from "@/components/landing/products";
 import { Faq } from "@/components/landing/faq";
-import { WA_GENERIC, WA_HELP, wa } from "@/lib/whatsapp";
+import { WA_GENERIC, WA_HELP, WA_VIDEO } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  validateSearch: (search): { tipo?: "pf" | "pj" } => ({
+    tipo: search.tipo === "pj" ? "pj" : search.tipo === "pf" ? "pf" : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "IF Certifica | Certificado Digital A1 e A3" },
@@ -42,9 +45,9 @@ export const Route = createFileRoute("/")({
           "Certificado digital A1 e A3 para PF e PJ, com atendimento especializado pelo WhatsApp e emissão por videoconferência.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://ifcertifica.com.br/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://ifcertifica.com.br/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -132,6 +135,8 @@ const scenarios = [
 ];
 
 function Index() {
+  const { tipo } = Route.useSearch();
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <SiteHeader />
@@ -210,7 +215,7 @@ function Index() {
         </div>
       </section>
 
-      <Products />
+      <Products initialTab={tipo === "pj" ? "pj" : "pf"} />
 
       {/* DESTAQUE DE PREÇO */}
       <section className="section-pad bg-surface">
@@ -303,7 +308,7 @@ function Index() {
                 presencialmente em Brasília-DF.
               </p>
               <a
-                href={WA_GENERIC}
+                href={WA_VIDEO}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-base btn-whats mt-8"
@@ -444,7 +449,7 @@ function Index() {
             orientar você sobre a opção mais adequada para sua necessidade.
           </p>
           <a
-            href={WA_GENERIC}
+            href={WA_HELP}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
@@ -467,7 +472,7 @@ function Index() {
             Fale com a IF Certifica e descubra a opção ideal para você.
           </p>
           <a
-            href={WA_GENERIC}
+            href={WA_HELP}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-base btn-whats mt-8"
