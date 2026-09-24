@@ -21,8 +21,8 @@ const a1Bullets = (tab: Tab) => [
   "Ideal para uso em computador",
 ];
 
-export function Products() {
-  const [tab, setTab] = useState<Tab>("pf");
+export function Products({ initialTab = "pf" }: { initialTab?: Tab }) {
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [validity, setValidity] = useState<"1" | "2">("2");
 
   const p1 = a1[tab];
