@@ -72,9 +72,9 @@ const sections = [
     title: "Cookies e ferramentas de medição",
     content: (
       <div className="space-y-3">
-        <p>Com sua permissão, o site usa a tag do Google Ads para medir visitas e cliques nos links do WhatsApp que vieram de anúncios e ajudar a avaliar e otimizar os anúncios. O Google pode receber informações sobre a visita, o dispositivo, cookies e o clique no link; não enviamos o conteúdo da mensagem do WhatsApp nem dados de identificação do cliente no evento de conversão.</p>
-        <p>Em regiões onde é exigido consentimento, a tag só é carregada após a aceitação. Você pode recusar ou retirar sua permissão a qualquer momento em “Preferências de cookies”, disponível em todas as páginas. Fora dessas regiões, a medição é ativada por padrão, respeitando recusas e preferências de privacidade aplicáveis.</p>
-        <p>Guardamos no seu navegador um registro da escolha, da data e da versão do aviso apresentado. Ao mudar de escolha, mantemos o histórico da aceitação e da retirada. A recusa ou retirada impede novos eventos de medição deste site; cliques e impressões dos anúncios continuam sendo contabilizados pelo Google.</p>
+        <p>O site carrega a tag do Google Ads em todas as páginas para medir visitas e cliques nos links do WhatsApp e ajudar a avaliar e otimizar anúncios. O Google pode receber informações sobre a visita, o dispositivo, cookies e o clique no link; não enviamos o conteúdo da mensagem do WhatsApp nem dados de identificação do cliente no evento de conversão.</p>
+        <p>Na União Europeia, no Espaço Econômico Europeu, no Reino Unido e na Suíça, o armazenamento e o uso de dados para anúncios e análises começam desativados até sua aceitação. Em outros países, inclusive no Brasil, começam ativados, mas você pode recusar a qualquer momento. A tag permanece carregada e os cliques nos links do WhatsApp continuam sendo comunicados ao Google com os sinais da escolha vigente, inclusive quando você recusa. Você pode rever sua decisão em “Preferências de cookies”, disponível em todas as páginas.</p>
+        <p>Guardamos no seu navegador um registro da escolha, da data e da versão do aviso apresentado. Ao mudar de escolha, mantemos o histórico da aceitação e da retirada. Cliques e impressões dos anúncios continuam sendo contabilizados pelo Google.</p>
       </div>
     ),
   },
