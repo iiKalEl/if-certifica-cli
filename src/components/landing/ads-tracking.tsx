@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ADS_CONVERSION, CONSENT_KEY, NOTICE_TEXT, currentChoice, loadGoogleAds, requiresConsent, saveChoice, updateGoogleConsent, type ConsentChoice } from "@/lib/ads-consent";
+import { ADS_CONVERSION, CONSENT_KEY, NOTICE_TEXT, currentChoice, requiresConsent, saveChoice, updateGoogleConsent, type ConsentChoice } from "@/lib/ads-consent";
 
 export function AdsTracking() {
   const [regionNeedsConsent, setRegionNeedsConsent] = useState(true);
@@ -17,11 +17,10 @@ export function AdsTracking() {
         const latest = currentChoice();
         setRegionNeedsConsent(needsConsent);
         setRegionReady(true);
-        if (!(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl && (latest === "accepted" || (!needsConsent && latest !== "rejected"))) {
-          loadGoogleAds();
-          updateGoogleConsent("accepted");
-        } else {
+        if ((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl || latest === "rejected") {
           updateGoogleConsent("rejected");
+        } else if (latest === "accepted") {
+          updateGoogleConsent("accepted");
         }
       });
     };
@@ -45,9 +44,6 @@ export function AdsTracking() {
       try {
         if (new URL(link.href).hostname !== "wa.me") return;
       } catch { return; }
-      // Check the latest choice at send time, including withdrawals from another tab.
-      const latest = currentChoice();
-      if (!regionReady || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl || !(latest === "accepted" || (!regionNeedsConsent && latest !== "rejected"))) return;
       window.gtag?.("event", "conversion", {
         send_to: ADS_CONVERSION,
         value: 50.0,
@@ -56,11 +52,13 @@ export function AdsTracking() {
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
-  }, [regionReady, regionNeedsConsent]);
+  }, []);
 
   const decide = (next: ConsentChoice) => {
-    saveChoice(next);
-    setChoice(next);
+    // Acknowledging the default outside consent regions does not override an earlier refusal.
+    const saved = next === "acknowledged" && choice === "rejected" ? "rejected" : next;
+    saveChoice(saved);
+    setChoice(saved);
     setSettingsOpen(false);
   };
 
@@ -75,18 +73,19 @@ export function AdsTracking() {
       >
         Preferências de cookies
       </Button>
-      {regionReady && ((regionNeedsConsent && !choice) || settingsOpen) && (
+      {regionReady && (!choice || settingsOpen) && (
         <div role="dialog" aria-label="Preferências de privacidade" className="fixed inset-x-0 bottom-16 z-[60] border-t border-border bg-background p-4 shadow-lg md:bottom-0">
           <div className="mx-auto flex max-w-5xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="max-w-2xl text-sm text-foreground">
               <p className="font-bold">Privacidade e anúncios</p>
               <p className="mt-1 text-muted-foreground">
-                {NOTICE_TEXT} <a className="underline" href="/privacidade">Política de Privacidade</a>.
+                 {regionNeedsConsent ? "Com sua permissão, " : "Neste site, "}{NOTICE_TEXT} <a className="underline" href="/privacidade">Política de Privacidade</a>.
               </p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-2">
               <Button type="button" variant="outline" onClick={() => decide("rejected")}>Recusar</Button>
-              <Button type="button" onClick={() => decide("accepted")}>Aceitar</Button>
+              <Button type="button" onClick={() => decide(regionNeedsConsent ? "accepted" : "acknowledged")}>{regionNeedsConsent ? "Aceitar" : "Ok"}</Button>
+              {settingsOpen && choice === "rejected" && !regionNeedsConsent && <Button type="button" variant="outline" onClick={() => decide("accepted")}>Permitir medição</Button>}
               {settingsOpen && <Button type="button" variant="ghost" onClick={() => setSettingsOpen(false)}>Fechar</Button>}
             </div>
           </div>

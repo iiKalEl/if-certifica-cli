@@ -12,6 +12,32 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AdsTracking } from "@/components/landing/ads-tracking";
+import { ADS_ID, CONSENT_KEY, CONSENT_REGIONS } from "@/lib/ads-consent";
+
+const googleTagSetup = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+  region: ${JSON.stringify(CONSENT_REGIONS)}
+});
+gtag('consent', 'default', {
+  ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'
+});
+try {
+  var record = JSON.parse(localStorage.getItem(${JSON.stringify(CONSENT_KEY)}) || 'null');
+  var last = record && Array.isArray(record.history) && record.history[record.history.length - 1];
+  if (last && (last.choice === 'rejected' || last.choice === 'accepted')) {
+    var state = last.choice === 'rejected' ? 'denied' : 'granted';
+    gtag('consent', 'update', { ad_storage: state, ad_user_data: state, ad_personalization: state, analytics_storage: state });
+  }
+} catch (e) { /* Storage can be unavailable. */ }
+if (navigator.globalPrivacyControl) {
+  gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+}
+gtag('js', new Date());
+gtag('config', ${JSON.stringify(ADS_ID)});
+`;
 
 function NotFoundComponent() {
   return (
@@ -119,6 +145,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: googleTagSetup }} />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} />
         <HeadContent />
       </head>
       <body>
