@@ -2,6 +2,7 @@ export const ADS_ID = "AW-18388428574";
 export const ADS_CONVERSION = "AW-18388428574/cO3VCLW09YQdEJ7OpMBE";
 export const NOTICE_VERSION = "ads-whatsapp-2026-09";
 export const CONSENT_KEY = "ifcertifica-ads-consent";
+export const NOTICE_TEXT = "Com sua permissão, usamos cookies e dados de visitas e cliques no WhatsApp para medir e melhorar anúncios no Google Ads. Você pode recusar ou mudar sua escolha a qualquer momento.";
 
 export type ConsentChoice = "accepted" | "rejected";
 export type ConsentRecord = {
@@ -88,9 +89,7 @@ export function loadGoogleAds() {
   window.gtag("consent", "default", {
     ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
   });
-  window.gtag("consent", "update", {
-    ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted",
-  });
+  updateGoogleConsent("accepted");
   window.gtag("js", new Date());
   window.gtag("config", ADS_ID);
   const script = document.createElement("script");

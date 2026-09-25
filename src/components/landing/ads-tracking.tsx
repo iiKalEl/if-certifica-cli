@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ADS_CONVERSION, CONSENT_KEY, currentChoice, loadGoogleAds, requiresConsent, saveChoice, updateGoogleConsent, type ConsentChoice } from "@/lib/ads-consent";
+import { ADS_CONVERSION, CONSENT_KEY, NOTICE_TEXT, currentChoice, loadGoogleAds, requiresConsent, saveChoice, updateGoogleConsent, type ConsentChoice } from "@/lib/ads-consent";
 
 export function AdsTracking() {
   const [regionNeedsConsent, setRegionNeedsConsent] = useState(true);
@@ -11,15 +11,17 @@ export function AdsTracking() {
   useEffect(() => {
     let active = true;
     const sync = () => {
-      const latest = currentChoice();
-      setChoice(latest);
-      if (latest === "rejected" || latest === "accepted") updateGoogleConsent(latest);
+      setChoice(currentChoice());
       void requiresConsent().then((needsConsent) => {
         if (!active) return;
+        const latest = currentChoice();
         setRegionNeedsConsent(needsConsent);
         setRegionReady(true);
         if (latest === "accepted" || (!needsConsent && latest !== "rejected" && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl)) {
           loadGoogleAds();
+          updateGoogleConsent("accepted");
+        } else {
+          updateGoogleConsent("rejected");
         }
       });
     };
@@ -79,7 +81,7 @@ export function AdsTracking() {
             <div className="max-w-2xl text-sm text-foreground">
               <p className="font-bold">Privacidade e anúncios</p>
               <p className="mt-1 text-muted-foreground">
-                Com sua permissão, usamos cookies e dados de visitas e cliques no WhatsApp para medir e melhorar anúncios no Google Ads. Você pode recusar ou mudar sua escolha a qualquer momento. <a className="underline" href="/privacidade">Política de Privacidade</a>.
+                {NOTICE_TEXT} <a className="underline" href="/privacidade">Política de Privacidade</a>.
               </p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-2">
