@@ -21,6 +21,7 @@ const consentCountries = new Set([
 ]);
 
 let regionPromise: Promise<boolean> | undefined;
+let sessionChoice: ConsentChoice | undefined;
 
 export function requiresConsent(): Promise<boolean> {
   if (!regionPromise) {
@@ -58,16 +59,22 @@ export function getConsentRecord(): ConsentRecord | null {
 export function currentChoice(): ConsentChoice | undefined {
   const history = getConsentRecord()?.history;
   const last = history?.[history.length - 1];
-  return last?.choice === "accepted" || last?.choice === "rejected" ? last.choice : undefined;
+  return last?.choice === "accepted" || last?.choice === "rejected" ? last.choice : sessionChoice;
 }
 
 export function saveChoice(choice: ConsentChoice) {
+  sessionChoice = choice;
   const previous = getConsentRecord();
   const record: ConsentRecord = {
     visitorId: previous?.visitorId ?? crypto.randomUUID(),
     history: [...(previous?.history ?? []), { choice, at: new Date().toISOString(), noticeVersion: NOTICE_VERSION }],
   };
   try { localStorage.setItem(CONSENT_KEY, JSON.stringify(record)); } catch { /* Still honor choice in this tab. */ }
+  window.gtag?.("consent", "update", {
+    ad_storage: choice === "accepted" ? "granted" : "denied",
+    ad_user_data: choice === "accepted" ? "granted" : "denied",
+    ad_personalization: choice === "accepted" ? "granted" : "denied",
+  });
   window.dispatchEvent(new CustomEvent("ifcertifica-consent-changed", { detail: choice }));
 }
 
@@ -75,6 +82,12 @@ export function loadGoogleAds() {
   if (document.querySelector(`script[src="https://www.googletagmanager.com/gtag/js?id=${ADS_ID}"]`)) return;
   window.dataLayer = window.dataLayer || [];
   window.gtag = (...args: unknown[]) => { window.dataLayer?.push(args); };
+  window.gtag("consent", "default", {
+    ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
+  });
+  window.gtag("consent", "update", {
+    ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted",
+  });
   window.gtag("js", new Date());
   window.gtag("config", ADS_ID);
   const script = document.createElement("script");
