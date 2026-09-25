@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ShieldCheck,
+  BadgeCheck,
+  ContactRound,
   Zap,
   Handshake,
   Laptop,
@@ -214,6 +216,21 @@ function Index() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section aria-label="Credenciais de confiança" className="border-b border-border bg-surface py-5 sm:py-6">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 sm:gap-6 sm:px-6">
+          {[
+            { icon: ShieldCheck, text: "Certificado oficial ICP-Brasil" },
+            { icon: BadgeCheck, text: "Emitido pela AC Consulti" },
+            { icon: ContactRound, text: "Agente de registro AR TechSign" },
+          ].map((seal) => (
+            <div key={seal.text} className="flex items-center gap-3 text-sm font-bold text-navy sm:text-base">
+              <seal.icon aria-hidden="true" className="h-5 w-5 shrink-0 text-primary" />
+              <span>{seal.text}</span>
+            </div>
+          ))}
         </div>
       </section>
 
