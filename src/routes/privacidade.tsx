@@ -71,9 +71,11 @@ const sections = [
     icon: Eye,
     title: "Cookies e ferramentas de medição",
     content: (
-      <p>
-        O site utiliza ferramentas do Google, incluindo Google Analytics e Google Ads, e da Meta, incluindo o Pixel, para medir visitas e os resultados de anúncios.
-      </p>
+      <div className="space-y-3">
+        <p>Com sua permissão, o site usa a tag do Google Ads para medir visitas e cliques nos links do WhatsApp que vieram de anúncios e ajudar a avaliar e otimizar os anúncios. O Google pode receber informações sobre a visita, o dispositivo, cookies e o clique no link; não enviamos o conteúdo da mensagem do WhatsApp nem dados de identificação do cliente no evento de conversão.</p>
+        <p>Em regiões onde é exigido consentimento, a tag só é carregada após a aceitação. Você pode recusar ou retirar sua permissão a qualquer momento em “Preferências de cookies”, disponível em todas as páginas. Fora dessas regiões, a medição é ativada por padrão, respeitando recusas e preferências de privacidade aplicáveis.</p>
+        <p>Guardamos no seu navegador um registro da escolha, da data e da versão do aviso apresentado. Ao mudar de escolha, mantemos o histórico da aceitação e da retirada. A recusa ou retirada impede novos eventos de medição deste site; cliques e impressões dos anúncios continuam sendo contabilizados pelo Google.</p>
+      </div>
     ),
   },
 ];
