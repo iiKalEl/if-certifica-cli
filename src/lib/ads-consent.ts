@@ -70,12 +70,15 @@ export function saveChoice(choice: ConsentChoice) {
     history: [...(previous?.history ?? []), { choice, at: new Date().toISOString(), noticeVersion: NOTICE_VERSION }],
   };
   try { localStorage.setItem(CONSENT_KEY, JSON.stringify(record)); } catch { /* Still honor choice in this tab. */ }
-  window.gtag?.("consent", "update", {
-    ad_storage: choice === "accepted" ? "granted" : "denied",
-    ad_user_data: choice === "accepted" ? "granted" : "denied",
-    ad_personalization: choice === "accepted" ? "granted" : "denied",
-  });
+  updateGoogleConsent(choice);
   window.dispatchEvent(new CustomEvent("ifcertifica-consent-changed", { detail: choice }));
+}
+
+export function updateGoogleConsent(choice: ConsentChoice) {
+  const state = choice === "accepted" ? "granted" : "denied";
+  window.gtag?.("consent", "update", {
+    ad_storage: state, ad_user_data: state, ad_personalization: state,
+  });
 }
 
 export function loadGoogleAds() {

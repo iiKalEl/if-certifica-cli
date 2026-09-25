@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ADS_CONVERSION, CONSENT_KEY, currentChoice, loadGoogleAds, requiresConsent, saveChoice, type ConsentChoice } from "@/lib/ads-consent";
+import { ADS_CONVERSION, CONSENT_KEY, currentChoice, loadGoogleAds, requiresConsent, saveChoice, updateGoogleConsent, type ConsentChoice } from "@/lib/ads-consent";
 
 export function AdsTracking() {
   const [regionNeedsConsent, setRegionNeedsConsent] = useState(true);
@@ -13,11 +13,12 @@ export function AdsTracking() {
     const sync = () => {
       const latest = currentChoice();
       setChoice(latest);
+      if (latest === "rejected" || latest === "accepted") updateGoogleConsent(latest);
       void requiresConsent().then((needsConsent) => {
         if (!active) return;
         setRegionNeedsConsent(needsConsent);
         setRegionReady(true);
-        if (latest === "accepted" || (!needsConsent && latest !== "rejected" && navigator.globalPrivacyControl !== true)) {
+        if (latest === "accepted" || (!needsConsent && latest !== "rejected" && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl)) {
           loadGoogleAds();
         }
       });
@@ -44,7 +45,7 @@ export function AdsTracking() {
       } catch { return; }
       // Check the latest choice at send time, including withdrawals from another tab.
       const latest = currentChoice();
-      if (!regionReady || !(latest === "accepted" || (!regionNeedsConsent && latest !== "rejected" && navigator.globalPrivacyControl !== true))) return;
+      if (!regionReady || !(latest === "accepted" || (!regionNeedsConsent && latest !== "rejected" && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl))) return;
       window.gtag?.("event", "conversion", {
         send_to: ADS_CONVERSION,
         value: 50.0,
