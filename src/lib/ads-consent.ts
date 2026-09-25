@@ -2,7 +2,7 @@ export const ADS_ID = "AW-18388428574";
 export const ADS_CONVERSION = "AW-18388428574/cO3VCLW09YQdEJ7OpMBE";
 export const NOTICE_VERSION = "ads-whatsapp-consent-v2-2026-09";
 export const CONSENT_KEY = "ifcertifica-ads-consent";
-export const NOTICE_TEXT = "Usamos o Google Ads para medir visitas e cliques no WhatsApp e melhorar anúncios. Você pode recusar ou mudar sua escolha a qualquer momento.";
+export const NOTICE_TEXT = "usamos o Google Ads para medir visitas e cliques no WhatsApp e melhorar anúncios. Você pode recusar ou mudar sua escolha a qualquer momento.";
 export const CONSENT_REGIONS = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO", "GB", "CH"];
 
 export type ConsentChoice = "accepted" | "rejected" | "acknowledged";

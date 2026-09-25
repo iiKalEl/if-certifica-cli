@@ -73,7 +73,7 @@ export function AdsTracking() {
       >
         Preferências de cookies
       </Button>
-      {regionReady && (!choice || settingsOpen) && (
+      {regionReady && (!choice || (regionNeedsConsent && choice === "acknowledged") || settingsOpen) && (
         <div role="dialog" aria-label="Preferências de privacidade" className="fixed inset-x-0 bottom-16 z-[60] border-t border-border bg-background p-4 shadow-lg md:bottom-0">
           <div className="mx-auto flex max-w-5xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="max-w-2xl text-sm text-foreground">
