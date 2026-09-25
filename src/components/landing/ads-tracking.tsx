@@ -40,7 +40,7 @@ export function AdsTracking() {
     const onClick = (event: MouseEvent) => {
       const element = event.target;
       if (!(element instanceof Element)) return;
-      const link = element.closest("a[href]");
+      const link = element.closest<HTMLAnchorElement>("a[href]");
       if (!link) return;
       try {
         if (new URL(link.href).hostname !== "wa.me") return;
