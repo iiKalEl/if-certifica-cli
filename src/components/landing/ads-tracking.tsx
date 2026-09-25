@@ -17,7 +17,7 @@ export function AdsTracking() {
         const latest = currentChoice();
         setRegionNeedsConsent(needsConsent);
         setRegionReady(true);
-        if (latest === "accepted" || (!needsConsent && latest !== "rejected" && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl)) {
+        if (!(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl && (latest === "accepted" || (!needsConsent && latest !== "rejected"))) {
           loadGoogleAds();
           updateGoogleConsent("accepted");
         } else {
@@ -47,7 +47,7 @@ export function AdsTracking() {
       } catch { return; }
       // Check the latest choice at send time, including withdrawals from another tab.
       const latest = currentChoice();
-      if (!regionReady || !(latest === "accepted" || (!regionNeedsConsent && latest !== "rejected" && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl))) return;
+      if (!regionReady || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl || !(latest === "accepted" || (!regionNeedsConsent && latest !== "rejected"))) return;
       window.gtag?.("event", "conversion", {
         send_to: ADS_CONVERSION,
         value: 50.0,
